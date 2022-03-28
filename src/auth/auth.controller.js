@@ -19,7 +19,7 @@ import jwt from 'jsonwebtoken';
  */
 export const registerCtrl = async (req, res) => {
     try {
-        const user = await getUserByEmailNoStatus(req.body.email);
+        const user = await getUserByEmailNoStatus(req.body.email);   // va a la bsae de datos para op el usuario via mail sin importas que exista
         if (user === null) {
             req.body.password = encodePassword(req.body.password);
             await createUser({ ...req.body, status: 'PENDING_VALIDATION' }); // paso 2
@@ -28,8 +28,8 @@ export const registerCtrl = async (req, res) => {
             await createValidationToken(token, req.body.email);
             // paso 4
             //ojo que el host es el de nuestra aplicación de react
-            sendValidationEmail(req.body.email, `http://localhost:3000/validate?token=${token}`)
-            res.sendStatus(201);
+                sendValidationEmail(req.body.email, `http://localhost:3000/validate?token=${token}`)
+                res.sendStatus(201);
         } else {
             // mando un 409(conflict) porque ya existe el usuario en BBDD
             res.sendStatus(409);

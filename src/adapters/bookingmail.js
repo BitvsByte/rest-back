@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 
-
-export const sendValidationEmail = async (email, url) => {
+export const sendBookingConf = async (email) => {
     // Only needed if you don't have a real mail account for testing
   const testAccount = await nodemailer.createTestAccount();
   // create reusable transporter object using the default SMTP transport
@@ -26,36 +25,8 @@ export const sendValidationEmail = async (email, url) => {
   const info = await transporter.sendMail({
     from: '"Proyecto_Restaurante 👻" <neoland@faceb00k.com>', // sender address
     to:email, // list of receivers
-    subject: "Valida tu email par continuar ✔", // Subject line
-    html: `Skip to content
-    Search or jump to…
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-     
-    @agonsant 
-    sendgrid
-    /
-    email-templates
-    Public
-    Code
-    Issues
-    18
-    Pull requests
-    1
-    Actions
-    Projects
-    Wiki
-    Security
-    Insights
-    email-templates/paste-templates/email-confirmation.html
-    @two24studios
-    two24studios Add Paste transactional templates
-    Latest commit c64ac93 on 24 Oct 2017
-     History
-     1 contributor
-    272 lines (244 sloc)  8.97 KB
+    subject: "Confirmación de tu Reserva ✔", // Subject line
+    html: `
        
     <!DOCTYPE html>
     <html>
@@ -183,7 +154,7 @@ export const sendValidationEmail = async (email, url) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
               <tr>
                 <td align="center" valign="top" style="padding: 36px 24px;">
-                  <a href="${url}" target="_blank" style="display: inline-block;">
+                 
                     <img src="" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
                   </a>
                 </td>
@@ -209,7 +180,7 @@ export const sendValidationEmail = async (email, url) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                  <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Verifique la cuenta para continuar</h1>
+                  <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Confirmacion de la reserva en el Restaurante_</h1>
                 </td>
               </tr>
             </table>
@@ -235,36 +206,18 @@ export const sendValidationEmail = async (email, url) => {
               <!-- start copy -->
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                  <p style="margin: 0;">Pulse el botón de abajo para confirmar su dirección de correo electrónico. Si no ha creado una cuenta con <a href="https://sendgrid.com">Paste</a>, puede eliminar este correo electrónico de forma segura.</p>
+                  <p style="margin: 0;">Su reserva esta confirmada para dia.... a las .... <a href="https://sendgrid.com">Paste</a>, .</p>
                 </td>
               </tr>
               <!-- end copy -->
     
-              <!-- start button -->
-              <tr>
-                <td align="left" bgcolor="#ffffff">
-                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr>
-                      <td align="center" bgcolor="#ffffff" style="padding: 12px;">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                              <a href="${url}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Valida tu email</a>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <!-- end button -->
+
     
               <!-- start copy -->
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                  <p style="margin: 0;">Si no funciona, copie y pegue el siguiente enlace en su navegador:</p>
-                  <p style="margin: 0;"><a href="${url}" target="_blank">${url}</a></p>
+                  <p style="margin: 0;">Cualquier duda contacte con nosotros al telefono: (91)xxx-xxx-xxx</p>
+                  
                 </td>
               </tr>
               <!-- end copy -->
@@ -300,7 +253,7 @@ export const sendValidationEmail = async (email, url) => {
               <!-- start permission -->
               <tr>
                 <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                  <p style="margin: 0;">You received this email because we received a request for [type_of_action] for your account. If you didn't request [type_of_action] you can safely delete this email.</p>
+                  
                 </td>
               </tr>
               <!-- end permission -->
@@ -308,8 +261,8 @@ export const sendValidationEmail = async (email, url) => {
               <!-- start unsubscribe -->
               <tr>
                 <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                  <p style="margin: 0;">To stop receiving these emails, you can <a href="${url}" target="_blank">unsubscribe</a> at any time.</p>
-                  <p style="margin: 0;">Paste 1234 S. Broadway St. City, State 12345</p>
+                  
+                  
                 </td>
               </tr>
               <!-- end unsubscribe -->
@@ -334,4 +287,3 @@ export const sendValidationEmail = async (email, url) => {
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
-

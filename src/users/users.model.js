@@ -89,3 +89,18 @@ export const retrieveUserInfoByEmail = async (email) => {
     }
 }
 
+export const deleteUserInfoByEmail = async (email) => {
+  try {
+    await client.connect();
+    const db = client.db(DATABASE_NAME);
+    const users = db.collection(COLLECTION_NAME);
+    const query = { email };
+    const options = { projection: { _id: 0, password: 0, status: 0 } };
+    return users.deleteOne(query, options);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    // client.close();
+    return "delete";
+  }
+};
