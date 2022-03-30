@@ -23,3 +23,18 @@ export const createBooking = async (booking) => {
         await client.close();
     }
 };
+export const deleteBookingInfoByEmail = async (email) => {
+    try {
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const bookings = db.collection(COLLECTION_NAME);
+      const query = { email };
+      const options = { projection: { _id: 0, password: 0, status: 0 } };
+      return bookings.deleteOne(query, options);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      // client.close();
+      return "delete";
+    }
+  };

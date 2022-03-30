@@ -6,6 +6,7 @@ import usersRouter from './src/users/users.router.js'
 import { validateAuth } from './src/auth/auth.middleware.js';
 import bookingRouter from './src/bookings/booking.router.js';
 import commandRouter from './src/command/command.router.js'
+import cookingRouter from './src/cooking/cooking.router.js'
 
 
 
@@ -25,6 +26,7 @@ app.use('/users', validateAuth, usersRouter);
 
 app.use('/booking',validateAuth,bookingRouter);
 app.use('/command',commandRouter)
+app.use('/cooking',validateAuth,cookingRouter);
 
 app.listen(port, () => console.log(`Servidor levantado en el puerto ${port}`));
 
