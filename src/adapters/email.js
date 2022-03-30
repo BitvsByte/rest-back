@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 
 export const sendValidationEmail = async (email, url) => {
     // Only needed if you don't have a real mail account for testing
+    
   const testAccount = await nodemailer.createTestAccount();
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({

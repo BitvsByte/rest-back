@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
 
+const {DB_PW}= process.env
 
-const URI = 'mongodb+srv://joseMB:pISTA200·@cluster0.mxtyb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+
+const URI = `mongodb+srv://joseMB:${process.env.DB_PW}@cluster0.mxtyb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const DB_NAME = 'my-auth-project';
 const COLLECTION_NAME = 'bookings';
 const client = new MongoClient(URI);

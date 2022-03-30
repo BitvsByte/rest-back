@@ -10,6 +10,8 @@ import {jwt_secret} from './auth.secrets.js'
 
 import jwt from 'jsonwebtoken';
 
+const {JWT_SECRET}=process.env;
+
 
 /**
  * 1. Van a venir los datos de registro en el body. Habrá que validar el body
@@ -72,7 +74,7 @@ export const loginCtrl = async (req, res) => {
     const user = await retrieveSuccessUserByEmailAndPassword(email, encodePassword(password));
     if (user !== null) {
         // existe el usuario con esas condiciones
-        const token = jwt.sign({ email: user.email, hola:'bootcamp' }, jwt_secret); // paso 2
+        const token = jwt.sign({ email: user.email, hola:'bootcamp' }, JWT_SECRET); // paso 2
         res.status(201).json({ access_token: token }); // paso 3
     } else {
         res.sendStatus(404);
